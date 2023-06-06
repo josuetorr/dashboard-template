@@ -1,0 +1,61 @@
+{
+	"name": "castro",
+	"version": "0.0.1",
+	"private": true,
+	"type": "module",
+	"prisma": {
+		"seed": "ts-node --esm prisma/seed.ts"
+	},
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"test": "playwright test",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"test:unit": "vitest",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"format": "prettier --plugin-search-dir . --write .",
+		"createme": "./scripts/createme.sh"
+	},
+	"devDependencies": {
+		"@faker-js/faker": "^8.0.1",
+		"@playwright/test": "^1.28.1",
+		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/kit": "^1.5.0",
+		"@types/validator": "^13.7.17",
+		"@typescript-eslint/eslint-plugin": "^5.45.0",
+		"@typescript-eslint/parser": "^5.45.0",
+		"autoprefixer": "^10.4.14",
+		"eslint": "^8.28.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-svelte": "^2.26.0",
+		"postcss": "^8.4.23",
+		"prettier": "^2.8.0",
+		"prettier-plugin-svelte": "^2.8.1",
+		"prisma": "^4.15.0",
+		"svelte": "^3.54.0",
+		"svelte-check": "^3.0.1",
+		"sveltekit-superforms": "^0.8.7",
+		"tailwindcss": "^3.3.2",
+		"tslib": "^2.4.1",
+		"typescript": "^5.0.0",
+		"validator": "^13.9.0",
+		"vite": "^4.3.0",
+		"vitest": "^0.25.3",
+		"zod": "^3.21.4"
+	},
+	"dependencies": {
+		"@lucia-auth/adapter-prisma": "^2.0.0",
+		"@popperjs/core": "^2.11.7",
+		"@prisma/client": "^4.15.0",
+		"@sendgrid/mail": "^7.7.0",
+		"classnames": "^2.3.2",
+		"flowbite": "^1.6.5",
+		"flowbite-svelte": "^0.36.5",
+		"iconify-icon": "^1.0.7",
+		"intuit-oauth": "^4.0.0",
+		"lucia-auth": "^1.7.0",
+		"nanoid": "^4.0.2"
+	}
+}

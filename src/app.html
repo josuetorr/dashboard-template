@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<script>
+			// TODO: use prefered color and store it in local storage
+			document.documentElement.classList.add("dark");
+		</script>
+		%sveltekit.head%
+	</head>
+
+	<body data-sveltekit-preload-data="hover" class="bg-white dark:bg-gray-900 dark:text-white overflow-hidden">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>

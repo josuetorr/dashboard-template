@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DEV_DATABASE_URL")
+  relationMode = "prisma"
+}
+
+enum Role {
+  POKEMON
+  GYM_LEADER
+  LEGENDARY
+  MYTHICAL
+}
+
+model AuthUser {
+  id          String        @id @unique @default(uuid())
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  AuthSession AuthSession[]
+  AuthKey     AuthKey[]
+
+  firstname        String
+  lastname         String
+  email            String             @unique
+  phone            String?
+  role             Role               @default(POKEMON)
+  is_deleted       Boolean            @default(false)
+  PasswordResetUrl PasswordResetUrl[]
+
+  @@map("User")
+}
+
+model AuthSession {
+  id             String   @id @unique
+  user_id        String
+  active_expires BigInt
+  idle_expires   BigInt
+  auth_user      AuthUser @relation(references: [id], fields: [user_id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@map("auth_session")
+}
+
+model AuthKey {
+  id              String   @unique
+  hashed_password String?
+  user_id         String
+  primary_key     Boolean
+  expires         BigInt?
+  auth_user       AuthUser @relation(references: [id], fields: [user_id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@map("auth_key")
+}
+
+model PasswordResetUrl {
+  id        String   @id @unique @default(uuid())
+  createdAt DateTime @default(now())
+
+  url        String   @unique
+  user_id    String
+  expires_at DateTime
+
+  auth_user AuthUser @relation(references: [id], fields: [user_id], onDelete: Cascade)
+
+  @@index([user_id])
+}
